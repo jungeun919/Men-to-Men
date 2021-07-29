@@ -13,7 +13,8 @@
     <ul>
         <li><a href="{{list.pk}}/">{{list.postname}}</a>
             {{list.field}}
-            {{list.pub_date}}</li>
+            {{list.pub_date}}
+            {{list.comments.count}}</li>
     </ul>
     {% endfor %}
 </table>
