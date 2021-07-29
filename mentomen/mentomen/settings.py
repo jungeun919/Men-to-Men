@@ -28,6 +28,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = '본인이메일입력@gmail.com'
+EMAIL_HOST_PASSWORD = '비번입력'
+
+
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Application definition
@@ -41,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'recruit.apps.RecruitConfig',
+    'mail.apps.MailConfig',
 ]
 
 MIDDLEWARE = [
