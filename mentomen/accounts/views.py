@@ -13,14 +13,14 @@ def login_view(request):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 login(request, user)
-        return redirect('home')
+        return redirect('post')
     else:
         form = AuthenticationForm()
         return render(request, 'accounts/login.html', {'form':form})
 
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('post')
 
 def signup_view(request):
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-        return redirect("home")
+        return redirect("post")
     else:
         form = SignupForm()
         return render(request, 'accounts/signup.html', {'form':form})

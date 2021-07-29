@@ -1,8 +1,8 @@
 from django.http.response import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-# 게시글(Post) Model을 불러옵니다
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 def home(request):
     return render(request, 'recruit/main.html')
@@ -38,3 +38,40 @@ def remove_post(request, pk):
         post.delete()
         return redirect('/post/')
     return render(request, 'recruit/remove_post.html', {'Post': post})
+
+def comment_new(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.co_writer = request.user
+            comment.post = post
+            comment.save()
+            return redirect('/post/' + str(post.id))
+    else:
+        form = CommentForm()
+        return render(request, 'recruit/comment_new.html', {"form":form})
+
+def comment_update(request, comment_id):
+    cur_comment = get_object_or_404(Comment, pk=comment_id)
+    post = cur_comment.post
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance= cur_comment)
+        if form.is_valid():
+            comment = form.save(commit=False) 
+            comment.co_writer = request.user
+            comment.save()
+            return redirect('/post/' + str(post.id))
+    else:
+        form = CommentForm(instance=cur_comment)
+    return render(request, 'recruit/comment_new.html', {'form': form})
+
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if request.user != comment.co_writer:
+        return redirect('/post/' + str(comment.post.id))
+    else:
+        comment.delete()
+    return redirect('/post/' + str(comment.post.id))

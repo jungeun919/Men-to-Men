@@ -9,4 +9,30 @@
 <p>{{post.contents}}</p>
 <a href="/post/">목록</a>
 <a href="/post/{{post.pk}}/remove">삭제</a>
+
+
+<!-- 댓글 목록 -->
+<div class="card mb-2">
+    <h2 class="mt-0">댓글</h2>
+    <div class="card-body">
+        {% for comment in post.comments.all %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <small class="text-muted">작성일: {{comment.created_at}}</small>
+                        <p>{{comment.co_writer}}: {{comment.text}}</p>
+                        <!-- 댓글 수정, 삭제 버튼 -->
+                        <a href="{% url 'comment_update' comment.id %}">댓글 수정하기</a>
+                        <a href="{% url 'comment_delete' comment.id %}">댓글 삭제하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- 댓글 목록 -->
+
+<a href="{% url 'comment_new' post.id %}">댓글 작성</a>
 {% endblock %}

@@ -26,3 +26,6 @@
 ||domain/post/번호|상세 페이지 띄우기|
 ||domain/post/new_post|새 글 작성하기|
 ||domain/post/번호/remove|글 삭제하기|
+||domain/comment_new/번호|댓글 폼|
+||domain/update/comment_new/번호|댓글 수정하기|
+||domain/delete/comment_new/번호|댓글 삭제하기|
