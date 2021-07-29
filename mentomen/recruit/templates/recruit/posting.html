@@ -1,15 +1,12 @@
-<html>
-    <head>
-        <title>Posting!</title>
-    </head>
-    <body>
-        <h1>게시글 개별 페이지입니다</h1>
-        <p>{{post.postname}}</p>
-        <p>{{post.pub_date}}</p>
-        <p>{{post.field}}</p>
-        <p>{{post.member}}명</p> 
-        <p>{{post.contents}}</p>
-        <a href="/post/">목록</a>
-        <a href="/post/{{post.pk}}/remove">삭제</a>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block contents %}
+<h1>게시글 개별 페이지입니다</h1>
+<p>{{post.postname}}</p>
+<p>{{post.pub_date}}</p>
+<p>{{post.field}}</p>
+<p>{{post.member}}명</p>
+<p>{{post.contents}}</p>
+<a href="/post/">목록</a>
+<a href="/post/{{post.pk}}/remove">삭제</a>
+{% endblock %}

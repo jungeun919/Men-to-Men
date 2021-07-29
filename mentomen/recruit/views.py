@@ -1,7 +1,11 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.utils import timezone
 # 게시글(Post) Model을 불러옵니다
 from .models import Post
+
+def home(request):
+    return render(request, 'recruit/main.html')
 
 def post(request):
     # 모든 Post를 가져와 postlist에 저장합니다

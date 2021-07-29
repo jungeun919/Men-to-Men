@@ -20,7 +20,6 @@ from recruit.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recruit.urls')),
-    # path('accounts/', include('accounts.urls')),
-    # path('mail/', include('mail.urls')),
-    # path('', home, name="home"),
+    path('accounts/', include('accounts.urls')),
+    path('mail/', include('mail.urls')),
 ]
