@@ -10,8 +10,11 @@ def home(request):
 def post(request):
     # 모든 Post를 가져와 postlist에 저장합니다
     postlist = Post.objects.all()
+    q = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
+    if q: # q가 있으면
+        postlist = postlist.filter(postname__icontains=q) # 제목에 q가 포함되어 있는 레코드만 필터링
     # blog.html 페이지를 열 때, 모든 Post인 postlist도 같이 가져옵니다 
-    return render(request, 'recruit/post.html', {'postlist':postlist})
+    return render(request, 'recruit/post.html', {'postlist':postlist, 'q':q})
 
 # blog의 게시글(posting)을 부르는 posting 함수
 def posting(request, pk):
