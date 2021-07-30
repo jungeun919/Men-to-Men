@@ -1,6 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 .main {
     display: block;
-    padding: 100px;
+    padding: 243px;
     background-color: rgb(168, 247, 247);
-    /* background-image: url("../img/mentoring.png"); */
+    background-image: url("../img/mentoring.png");
+}
+.mb-1 {
+    font-family: 'Lobster', cursive;
+    font-size: 80px;
+
+}
+.mb-5 {
+    font-family: 'Do Hyeon', sans-serif;
+}
+.btn.btn-light.btn-xl{
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
+    border: 2px solid black;
 }
