@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block contents %}
-
+<style>
+    div{
+        font-family: 'Do Hyeon', sans-serif;
+        font-size: 23px;
+    }
+</style>
 <div class="container">
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}

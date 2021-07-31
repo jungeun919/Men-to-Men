@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 
 {% block contents %}
+<style>
+    h1,h2,p,div,a{
+        font-family: 'Do Hyeon', sans-serif;
+        margin-left: 30px;
+    }
+    p,a{
+        font-size: 23px;
+    }
+    hr{
+        color: blue;
+    }
+</style>
 <h1>게시글 개별 페이지입니다</h1>
-<p>{{post.postname}}</p>
-<p>{{post.pub_date}}</p>
-<p>{{post.field}}</p>
-<p>{{post.member}}명</p>
-<p>{{post.contents}}</p>
+<hr>
+<p>제목: {{post.postname}}</p>
+<p>작성일: {{post.pub_date}}</p>
+<p>분야: {{post.field}}</p>
+<p>구하는 인원수: {{post.member}}명</p>
+<p>내용: {{post.contents}}</p>
 <a href="/post/">목록</a>
 <a href="/post/{{post.pk}}/remove">삭제</a>
 

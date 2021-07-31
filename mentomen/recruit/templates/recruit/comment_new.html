@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
 {% block contents %}
+<style>
+    div{
+        font-family: 'Do Hyeon', sans-serif;
+        font-size: 23px;
+    }
+</style>
 <div class='container'>
-    <form method='post'>
+    <form method='post'><br>
         {% csrf_token %}
         <table>
             {{form.as_table}}
