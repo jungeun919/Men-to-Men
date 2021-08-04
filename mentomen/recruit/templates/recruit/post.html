@@ -4,37 +4,81 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
 <style>
-    h1,button,form{
+    h1,
+    button,
+    form {
         font-family: 'Do Hyeon', sans-serif;
         margin-left: 30px;
     }
-    ul,table,h3{
+
+    ul,
+    table,
+    h3 {
         font-family: 'Do Hyeon', sans-serif;
         font-size: 23px;
     }
-    hr{
+
+    hr {
         color: blue;
     }
-    
+
+    .search {
+        position: relative;
+        text-align: center;
+        width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .input {
+        width: 80%;
+        border-radius: 20px;
+        border: 1px solid #bbb;
+        margin: 10px 0;
+        padding: 10px 12px;
+    }
+
+    .button {
+        width: 10%;
+        border-radius: 20px;
+        border: 1px solid #bbb;
+        margin: 10px 20px;
+        padding: 10px 12px;
+    }
+
+    .list {
+        width: 700px;
+        display: block;
+        margin: 10px auto 30px auto;
+    }
+
+    .detail {
+        font-size: medium;
+    }
 </style>
-<h1>게시판 페이지입니다</h1>
-<hr>
+
+
 <form action="" method="get">
-    <input type="text" name="q" value="{{ q }}">
-    <input type="submit" value="검색">
-</form><br>
-<!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
-<button><a href="new_post/">글쓰기</a></button>
-<hr>
-<table>
-    {% for list in postlist %}
-    <ul>
-        <li><a href="{{list.pk}}/">{{list.postname}}</a>&nbsp;, 
-            {{list.field}}&nbsp; ,
-            {{list.pub_date}}&nbsp; ,&nbsp;
-            {{list.comments.count}}개</li>
-    </ul>
-    {% endfor %}
-</table>
+    <div class="search">
+        <button class="button" type="submit"><a href="new_post/">글쓰기</a></button>
+        <input type="text" class="input" placeholder="찾으시는 글 제목을 입력해주세요." name="q" value="{{ q }}">
+    </div>
+</form>
+
+<br>
+
+<div class="list">
+    <table>
+        {% for list in postlist %}
+        <ul>
+            <a href="{{list.pk}}/">{{list.postname}}</a>&nbsp;
+            {{list.field}}&nbsp; <br>
+            <p class="detail">작성일 {{list.pub_date}}&nbsp; &nbsp;
+            댓글 {{list.comments.count}}개</p>
+        </ul>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

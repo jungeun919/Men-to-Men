@@ -2,50 +2,54 @@
 
 {% block contents %}
 <style>
-    h1,h2,p,div,a{
+    h1,
+    h2,
+    p,
+    div,
+    a {
         font-family: 'Do Hyeon', sans-serif;
         margin-left: 30px;
     }
-    p,a{
+
+    p,
+    a {
         font-size: 23px;
     }
-    hr{
+
+    hr {
         color: blue;
     }
 </style>
-<h1>게시글 개별 페이지입니다</h1>
-<hr>
-<p>제목: {{post.postname}}</p>
+
+
+<h1>{{post.postname}}</h1>
 <p>작성일: {{post.pub_date}}</p>
 <p>분야: {{post.field}}</p>
 <p>구하는 인원수: {{post.member}}명</p>
 <p>내용: {{post.contents}}</p>
+
 <a href="/post/">목록</a>
 <a href="/post/{{post.pk}}/remove">삭제</a>
 
+<br> <br>
+<a href="{% url 'comment_new' post.id %}">댓글 작성</a>
 
-<!-- 댓글 목록 -->
-<div class="card mb-2">
-    <h2 class="mt-0">댓글</h2>
-    <div class="card-body">
-        {% for comment in post.comments.all %}
-        <div class="card mb-2">
-            <div class="card-body">
-                <div class="media">
-                    <div class="media-body">
-                        <small class="text-muted">작성일: {{comment.created_at}}</small>
-                        <p>{{comment.co_writer}}: {{comment.text}}</p>
-                        <!-- 댓글 수정, 삭제 버튼 -->
-                        <a href="{% url 'comment_update' comment.id %}">댓글 수정하기</a>
-                        <a href="{% url 'comment_delete' comment.id %}">댓글 삭제하기</a>
-                    </div>
+<h2 class="mt-0">댓글 목록</h2>
+<div class="card-body">
+    {% for comment in post.comments.all %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="media">
+                <div class="media-body">
+                    <small class="text-muted">작성일: {{comment.created_at}}</small>
+                    <p>{{comment.co_writer}}: {{comment.text}}</p>
+
+                    <a href="{% url 'comment_update' comment.id %}">댓글 수정하기</a>
+                    <a href="{% url 'comment_delete' comment.id %}">댓글 삭제하기</a>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
-<!-- 댓글 목록 -->
-
-<a href="{% url 'comment_new' post.id %}">댓글 작성</a>
 {% endblock %}

@@ -7,36 +7,67 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
 <style>
-    h1{
+    h1 {
         font-family: 'Black Han Sans', sans-serif;
         margin-left: 30px;
     }
-    
-    form{
+
+    form {
         font-family: 'Do Hyeon', sans-serif;
         margin-left: 30px;
         font-size: 22px;
     }
+
+    .title {
+        text-align: center;
+    }
+
+    .study {
+        width: 700px;
+        display: block;
+        margin: 10px auto 30px auto;
+        border: 3px solid black;
+        border-radius: 5px;
+        padding: 25px;
+    }
+
+    .button {
+        display: block;
+        margin: auto;
+    }
 </style>
-<h1>스터디 글쓰기</h1>
-<form method="POST">
-    {% csrf_token %}
-    분야<br>
-    <select id="field" name="field">
-        <option value="어학">어학</option>
-        <option value="취업">취업</option>
-        <option value="고시/공무원">고시/공무원</option>
-        <option value="취미/교양">취미/교양</option>
-        <option value="프로그래밍">프로그래밍</option>
-        <option value="기타">기타</option>
-    </select><br>
-    모집 인원<br>
-    <input type="number" min="1" name="member"><br>
-    제목<br>
-    <input type="text" name="postname"><br>
-    내용<br>
-    <textarea rows="10" cols="50" name="contents"></textarea><br>
-    <input type="submit" value="글쓰기">
-</form>
+
+<br>
+<h1 class="title">스터디 글쓰기</h1> <br>
+
+<div class="study">
+    <form method="POST">
+        {% csrf_token %}
+        분야<br>
+        <select id="field" name="field">
+            <option value="어학">어학</option>
+            <option value="취업">취업</option>
+            <option value="고시/공무원">고시/공무원</option>
+            <option value="취미/교양">취미/교양</option>
+            <option value="프로그래밍">프로그래밍</option>
+            <option value="기타">기타</option>
+        </select><br>
+        <hr>
+
+        모집 인원<br>
+        <input type="number" min="1" name="member"><br>
+        <hr>
+
+        제목<br>
+        <input type="text" name="postname"><br>
+        <hr>
+
+        내용<br>
+        <textarea rows="10" cols="60" name="contents"></textarea><br><br>
+
+        <input class="button" type="submit" value="글쓰기">
+    </form>
+</div>
 {% endblock %}
