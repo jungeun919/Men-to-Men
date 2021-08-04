@@ -3,10 +3,20 @@
 
 .main {
     display: block;
-    padding: 243px;
+    padding: 190px;
     background-color: rgb(168, 247, 247);
     background-image: url("../img/mentoring.png");
     
+}
+.explain{
+    display: block;
+    padding: 20px;
+    width: 800px;
+    background-color: rgb(218, 245, 255);
+    position:relative;
+    display: inline-block;
+    opacity: 0.9;
+
 }
 .mb-1 {
     font-family: 'Lobster', cursive;
