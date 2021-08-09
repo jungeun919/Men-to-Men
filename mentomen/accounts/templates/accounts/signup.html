@@ -5,16 +5,32 @@
     div{
         font-family: 'Do Hyeon', sans-serif;
         font-size: 23px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    input{
+        width: 300px;
+    }
+    .btn-dark{
+        margin: auto;
+        display: block;
+        width: 100px;
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 <div class="container">
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
         <br>
-        <h1>Signup Page</h1>
-        <br>
+        <h1>Sign up!</h1>
         {{form.as_p}}
-        <input class="btn-dark" type="submit" value="제출하기">
+        
+        <input class="btn-dark" type="submit" value="가입하기">
     </form>
 </div>
 {% endblock %}
