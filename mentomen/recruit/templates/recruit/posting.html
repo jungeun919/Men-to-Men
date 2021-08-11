@@ -2,39 +2,104 @@
 
 {% block contents %}
 <style>
-    h1,
-    h2,
-    p,
-    div,
-    a {
+    h1,h2,p,div,table,a {
         font-family: 'Do Hyeon', sans-serif;
         margin-left: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-
-    p,
-    a {
+    p,a {
         font-size: 23px;
     }
-
     hr {
-        color: blue;
+        background-color: rgb(0, 0, 0);
+        width: 1000px;
+        position: absolute;
+        left: 18%;
+    }
+    tr{
+        display: block; float: left;
+        font-size: 23px;
+        border: 1px solid #bcbcbc;
+        
+    }
+    th{
+        display: block;
+        background-color: rgb(218, 245, 255);
+        width: 80px;
+        text-align: center;
+        font-size: 23px;
+        border: 1px solid #bcbcbc;
+    }
+    table{
+        font-size: 23px;
+       
+    }
+    td{
+        width: 200px;
+        border: 1px solid #bcbcbc;
+    }
+    tbody{
+        display: block;
+        overflow-x: hidden;
+        white-space: nowrap;
+    }
+    tbody tr td{
+        display: block;
+    }
+    tbody tr{
+        display: inline-block;
+    }
+    .media-body{
+        position: relative;
+        margin: 50px;
+        width: 450px;
+        height: 100px;
+        background-color: rgb(218, 245, 255);
+        border-radius: 10px;
+    }
+    .media-body:after{
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 15px 15px 15px 0;
+        border-color: transparent rgb(218, 245, 255);
+        display: block;
+        width: 0;
+        z-index: 1;
+        left: -15px;
+        top: 50px;
     }
 </style>
-
-
+<br>
 <h1>{{post.postname}}</h1>
-<p>작성일: {{post.pub_date}}</p>
-<p>분야: {{post.field}}</p>
-<p>구하는 인원수: {{post.member}}명</p>
-<p>내용: {{post.contents}}</p>
-
 <a href="/post/">목록</a>
 <a href="/post/{{post.pk}}/remove">삭제</a>
-
+<p>작성일: {{post.pub_date}}</p>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>분야</th>
+                <th>인원</th>
+                <th>내용</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{post.field}}</td>
+                <td>{{post.member}} 명</td>
+                <td>{{post.contents}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr>
 <br> <br>
+<h2 class="mt-0">댓글 목록</h2>
 <a href="{% url 'comment_new' post.id %}">댓글 작성</a>
 
-<h2 class="mt-0">댓글 목록</h2>
 <div class="card-body">
     {% for comment in post.comments.all %}
     <div class="card mb-2">
@@ -43,10 +108,9 @@
                 <div class="media-body">
                     <small class="text-muted">작성일: {{comment.created_at}}</small>
                     <p>{{comment.co_writer}}: {{comment.text}}</p>
-
-                    <a href="{% url 'comment_update' comment.id %}">댓글 수정하기</a>
-                    <a href="{% url 'comment_delete' comment.id %}">댓글 삭제하기</a>
                 </div>
+                <a href="{% url 'comment_update' comment.id %}">수정</a>
+                <a href="{% url 'comment_delete' comment.id %}">삭제</a>
             </div>
         </div>
     </div>
