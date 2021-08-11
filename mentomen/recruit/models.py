@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import settings
+from accounts.models import *
 
 # Create your models here.
 class Post(models.Model):
@@ -9,6 +10,8 @@ class Post(models.Model):
     pub_date = models.DateTimeField(default=timezone.now)
     postname = models.CharField(max_length=50)
     contents = models.TextField()
+    username = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, blank=True, null=True)
+    # email = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.postname

@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Post, Comment
 from .forms import CommentForm
+from accounts.models import CustomUser
+# from django.contrib.auth import email_user
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'recruit/main.html')
@@ -25,13 +28,21 @@ def posting(request, pk):
 
 def new_post(request):
     if request.method == 'POST':
+        username = request.user
+        # email = email_user(username)
+        # email = User.objects.get(email=email)
+        # email = CustomUser.objects.get(request.user.email)
+        print(username)
         new_article=Post.objects.create(
             member=request.POST['member'],
             field=request.POST['field'],
             postname=request.POST['postname'],
             contents=request.POST['contents'],
-            pub_date = timezone.now(),
+            pub_date=timezone.now(),
+            username=username,
+            # email = email, 
         )
+        
         return redirect('/post/')
     return render(request, 'recruit/new_post.html')
 
