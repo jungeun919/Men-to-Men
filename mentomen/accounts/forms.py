@@ -4,4 +4,4 @@ from .models import CustomUser
 class SignupForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'password1', 'password2', 'major', 'grade']
+        fields = ['username', 'password1', 'password2', 'major', 'grade', 'email']
