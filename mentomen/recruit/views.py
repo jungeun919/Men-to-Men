@@ -29,10 +29,8 @@ def posting(request, pk):
 def new_post(request):
     if request.method == 'POST':
         username = request.user
-        # email = email_user(username)
-        # email = User.objects.get(email=email)
-        # email = CustomUser.objects.get(request.user.email)
-        print(username)
+        email = request.user.email
+        print("email:", email)
         new_article=Post.objects.create(
             member=request.POST['member'],
             field=request.POST['field'],
@@ -40,7 +38,7 @@ def new_post(request):
             contents=request.POST['contents'],
             pub_date=timezone.now(),
             username=username,
-            # email = email, 
+            email=email,
         )
         
         return redirect('/post/')
