@@ -60,16 +60,19 @@ def comment_update(request, comment_id):
     cur_comment = get_object_or_404(Comment, pk=comment_id)
     post = cur_comment.post
 
-    if request.method == 'POST':
-        form = CommentForm(request.POST, instance= cur_comment)
-        if form.is_valid():
-            comment = form.save(commit=False) 
-            comment.co_writer = request.user
-            comment.save()
-            return redirect('/post/' + str(post.id))
+    if request.user == cur_comment.co_writer:
+        if request.method == 'POST':
+            form = CommentForm(request.POST, instance= cur_comment)
+            if form.is_valid():
+                comment = form.save(commit=False) 
+                comment.co_writer = request.user
+                comment.save()
+                return redirect('/post/' + str(post.id))
+        else:
+            form = CommentForm(instance=cur_comment)
+        return render(request, 'recruit/comment_new.html', {'form': form})
     else:
-        form = CommentForm(instance=cur_comment)
-    return render(request, 'recruit/comment_new.html', {'form': form})
+        return redirect('/post/' + str(cur_comment.post.id))
 
 def comment_delete(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
