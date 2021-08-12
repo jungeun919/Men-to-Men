@@ -26,9 +26,9 @@ SECRET_KEY = os.environ.get(
     'SECRET_KEY', 'django-insecure-blb!o!2t%9(uq%g5mfl^ho=yyuht$a6i-lb^@ilf%d7c)2@6#_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG', 'True') != 'False')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -146,8 +146,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AWS_ACCESS_KEY_ID = ''
-# AWS_SECRET_ACCESS_KEY = ''
-# AWS_STORAGE_BUCKET_NAME = ''
-# AWS_S3_SIGNATURE_VERSION = 's3v4'
-# AWS_S3_REGION_NAME = 'ap-northeast-2'
+AWS_ACCESS_KEY_ID = 'AKIAVNP6AUQIRKRLOIAF'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'hackerton'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
