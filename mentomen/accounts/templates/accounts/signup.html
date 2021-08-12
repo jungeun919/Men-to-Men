@@ -2,25 +2,33 @@
 
 {% block contents %}
 <style>
-    div{
+    div {
         font-family: 'Do Hyeon', sans-serif;
         font-size: 23px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    input{
-        width: 300px;
+
+    input {
+        width: 500px;
     }
-    .btn-dark{
+
+    .btn-dark {
         margin: auto;
         display: block;
         width: 100px;
     }
-    h1{
+
+    h1 {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .caution {
+        font-size: 20px;
+        color: darkgray;
     }
 </style>
 <div class="container">
@@ -29,13 +37,20 @@
         <br>
         <h1>Sign up!</h1>
         <br>
-        <input type="text" name="username" placeholder="Username"><br><br>
-        <input type="password" name="password1" placeholder="password"><br><br>
+        <input type="text" name="username" placeholder="Username">
+        <p class="caution">150자 이하여야 합니다. 문자, 숫자 및 @/./+/-/_ 로 구성되어야 합니다.</p> <br>
+        <input type="password" name="password1" placeholder="password">
+        <ul>
+            <li class="caution">암호는 다른 개인 정보와 너무 비슷하면 안됩니다.</li>
+            <li class="caution">암호는 8자 이상이어야 합니다.</li>
+            <li class="caution">암호는 일반적으로 사용되는 암호일 수 없습니다.</li>
+            <li class="caution">암호는 숫자로만 입력할 수 없습니다.</li> <br>
+        </ul>
         <input type="password" name="password2" placeholder="password 확인"><br><br>
         <input type="email" name="email" placeholder="이메일"><br><br>
         <input type="text" name="major" placeholder="전공"><br><br>
         <input type="number" name="grade" placeholder="학년"><br><br>
-        <input class="btn-dark" type="submit" value="가입하기">
+        <input class="btn-dark" type="submit" value="가입하기"> <br><br>
     </form>
 </div>
 {% endblock %}

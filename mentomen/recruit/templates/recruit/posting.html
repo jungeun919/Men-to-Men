@@ -74,19 +74,11 @@
 </style>
 <br>
 <h1>{{post.postname}}</h1>
-<<<<<<< HEAD
-=======
 <p>이메일: {{post.email}}
-작성자: {{post.username}}</p>
+    작성자: {{post.username}}</p>
 <a href="/mail/">이메일 보내기</a>
 <br><br>
-<p>작성일: {{post.pub_date}}</p>
-<p>분야: {{post.field}}</p>
-<p>구하는 인원수: {{post.member}}명</p>
-<p>내용: {{post.contents}}</p>
 
-
->>>>>>> 298a757bcca03c59428cd99f5e95b89829e21cb1
 <a href="/post/">목록</a>
 <a href="/post/{{post.pk}}/remove">삭제</a>
 <p>작성일: {{post.pub_date}}</p>
@@ -122,8 +114,10 @@
                     <small class="text-muted">작성일: {{comment.created_at}}</small>
                     <p>{{comment.co_writer}}: {{comment.text}}</p>
                 </div>
+                {% if user == comment.co_writer %}
                 <a href="{% url 'comment_update' comment.id %}">수정</a>
                 <a href="{% url 'comment_delete' comment.id %}">삭제</a>
+                {% endif %}
             </div>
         </div>
     </div>

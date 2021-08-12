@@ -3,10 +3,9 @@
 
 .main {
     display: block;
+    background-size: cover;
     padding: 190px;
     background-color: rgb(168, 247, 247);
-    background-image: url("../img/mentoring.png");
-    
 }
 .explain{
     display: block;
