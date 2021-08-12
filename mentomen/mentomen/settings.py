@@ -21,12 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-blb!o!2t%9(uq%g5mfl^ho=yyuht$a6i-lb^@ilf%d7c)2@6#_'
+# SECRET_KEY = 'django-insecure-blb!o!2t%9(uq%g5mfl^ho=yyuht$a6i-lb^@ilf%d7c)2@6#_'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', 'django-insecure-blb!o!2t%9(uq%g5mfl^ho=yyuht$a6i-lb^@ilf%d7c)2@6#_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG', 'True') != 'False')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -87,13 +89,23 @@ WSGI_APPLICATION = 'mentomen.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': os.environ.get('DB_NAME'),
+       'USER': os.environ.get('DB_USER'),
+       'PASSWORD': os.environ.get('DB_PASSWORD'),
+       'HOST': os.environ.get('DB_HOST'),
+       'PORT': '',
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -143,3 +155,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AWS_ACCESS_KEY_ID = ''
+# AWS_SECRET_ACCESS_KEY = ''
+# AWS_STORAGE_BUCKET_NAME = ''
+# AWS_S3_SIGNATURE_VERSION = 's3v4'
+# AWS_S3_REGION_NAME = 'ap-northeast-2'
